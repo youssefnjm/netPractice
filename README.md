@@ -4,29 +4,53 @@
 
 ---
 
-## 📡 What is IP?
+## 📑 Table of Contents
+
+### 🌐 **1. Introduction to IP**
+- [📡 What is IP?](#what-is-ip)
+- [🔄 Versions of IP (IPv4 vs IPv6)](#versions-of-ip)
+- [🏗️ IP Address Structure](#ip-address-structure)
+- [🔍 Network vs Host Address](#network-vs-host-address)
+- [🔍 how can i know between network address and host address?](#how-can-i-know-between-network-address-and-host-address)
+- [🎭 What Does a Subnet Mask Really Do?](#what-does-a-subnet-mask-really-do)
+- [💡 Practical Examples](#practical-examples)
+- [📚 Historical Context](#ip-classes)
+- [🚀 CIDR vs Classes](#are-we-steel-using-classes)
+- [🔓 Public vs Private IPs](#public-vs-private-ips)
+- [🔄 NAT (Network Address Translation)](#how-do-private-ips-talk-to-the-internet-nat)
+
+### 🌐 **2. Introduction to TCP & UDP**
+- [📡 What is tcp?](#what-is-tcp)
+- [📡 What is TCP/IP?](#what-is-tcp/ip)
+- [📡 How does TCP work?](#how-does-tcp-work)
+- [📡 What is udp?](#what-is-udp)
+- [📡 How does UDP work?](#how-does-udp-work)
+
+---
+
+## What is IP?
 
 **IP (Internet Protocol)** is a protocol that defines how devices identify and locate each other on a network, and how data packets are delivered between them.
 
 ---
 
-## 🔄 Versions of IP
+## Versions of IP
 
 | Version | Size | Format | Problem | Extras |
 |---------|------|--------|---------|--------|
 | **IPv4 (v4)** 🟢 | `32 bits` <br> *~4.3B addresses* | `192.168.1.10` <br> *(dotted decimal)* | ⚠️ Addresses running out | — |
-| **IPv6 (v6)** 🔵 | `128 bits` <br> *~340 undecillion addresses* | `2001:0db8:85a3::8a2e:0370:7334` <br> *(hex with colons)* | Virtually unlimited | Built-in IPsec<br>⚡ Efficient routing<br>🔧 Auto-configuration |
+| **IPv6 (v6)** 🔵 | `128 bits` <br> *~340 undecillion addresses* | `2001:0db8:85a3::8a2e:0370:7334` <br> *(hex with colons)* | Virtually unlimited | Built-in IPsec<br> Efficient routing<br> Auto-configuration |
 
 ---
 
-## 🏗️ IP Address Structure
+## IP Address Structure
 
 - All IPv4 addresses have the same structure: **`192.186.1.1`**
 - `[192, 186, 1, 1]` are called **octets**
 - Each octet length is **8 bits** → IP length = `8 × 4 = 32 bits` 
 - Each octet ranges between **0 and 255**
 
-### 🎯 Two Essential Parts
+### Network vs Host Address
 
 An IP address has two main components:
 
@@ -47,7 +71,7 @@ To distinguish between **network address** and **host address**, we use a **subn
 
 ---
 
-## 🎭 What Does a Subnet Mask Really Do?
+## What Does a Subnet Mask Really Do?
 
 Think of an IP address like a **street address**:
 
@@ -104,7 +128,7 @@ The subnet can hold **126 usable devices**.
 
 ---
 
-## 💡 Practical Examples
+## Practical Examples
 
 🔹 **Example 1:**
 
@@ -153,7 +177,7 @@ The subnet can hold **126 usable devices**.
 
 ---
 
-## 🗂️ IP Classes
+## IP Classes
 
 ### Historical Context
 
@@ -210,7 +234,7 @@ and to find the classe you shoul look at the **first octet** to determine the cl
 - **📍 Example:** `127.0.0.1` = **localhost** *(your computer talks to itself)*
 - **💡 Tip:** Useful for developers to test applications without needing a real network
 
-### 📌 Quick Summary Table
+### Quick Summary Table
 
 | Class | 1st Octet Range | Default Mask | Network Size | Notes |
 |-------|----------------|--------------|--------------|--------|
@@ -230,7 +254,7 @@ Example: A company needing 300 IPs could only choose:
 - Class C → 254 hosts (too small)
 - Class B → 65,536 hosts (way too big, wasteful).
 
-and here comes CIDR to fex the problem, CIDR introduced the “/N” notation (slash notation), where N = number of network bits.
+and here comes CIDR to fex the problem, CIDR introduced the "/N" notation (slash notation), where N = number of network bits.
 
 Example:
 
@@ -245,7 +269,7 @@ This gave flexibility: networks could be exactly the size needed, no waste.
 
 ### Public IP
 
-An IP address that is unique and reachable across the whole internet (the “face” of your network on the internet).Assigned by by ISPs (Internet Service Providers).
+An IP address that is unique and reachable across the whole internet (the "face" of your network on the internet).Assigned by by ISPs (Internet Service Providers).
 
 ### Private IP
 
@@ -253,7 +277,7 @@ An IP address that is only valid inside a private network (LAN, office, home Wi-
 
 ### ⚠️ Special Notes
 
-Loopback: 127.0.0.1 is neither public nor private, it’s “me” (your own machine).
+Loopback: 127.0.0.1 is neither public nor private, it's "me" (your own machine).
 
 #### Special ranges
 
@@ -265,15 +289,65 @@ Loopback: 127.0.0.1 is neither public nor private, it’s “me” (your own mac
 
 ### How do private IPs talk to the Internet? (NAT)
 
-A device with a private IP cannot directly connect to the internet. Instead, the router (which has a public IP) uses NAT (Network Address Translation) to “translate” all internal requests into its own public IP.
+A device with a private IP cannot directly connect to the internet. Instead, the router (which has a public IP) uses NAT (Network Address Translation) to "translate" all internal requests into its own public IP.
 
 Example:
 
 Your laptop = 192.168.1.5
 
 - Your phone = 192.168.1.8
-- Both connect through your router’s public IP = 102.45.88.21
+- Both connect through your router's public IP = 102.45.88.21
 - To the outside world, both appear as one IP (102.45.88.21).
+
+## What is TCP?
+
+TCP (Transmission Control Protocol) It is a transport layer protocol (layer 4 in the OSI model), Main job reliable data delivery between two devices.
+
+Features:
+
+- 📦 Splits data into segments
+- 🔢 Numbers segments so they can be reassembled in order
+- ✅ Uses ACKs (acknowledgements) to confirm delivery
+- 🔄 Retransmits lost packets
+- 🔐 Provides error checking & flow control
+
+## What is TCP/IP?
+
+TCP/IP is not one protocol, it’s a protocol suite (a family of protocols).
+
+Two key protocols in the suite:
+
+- IP = addressing & delivery (the "where").
+
+- TCP = reliability & order (the "how"). 
+
+So: TCP/IP = IP handles the path, TCP makes sure the data arrives correctly.
+
+## How does TCP work?
+
+- Browser sends HTTP request.
+- TCP breaks it into segments, adds sequence numbers.
+- TCP gives segments to IP, IP puts them inside packets with source & destination IP addresses.
+- Packets travel across routers, possibly out of order, some may get lost.
+- TCP on the receiving side collects segments, checks for errors. If something is missing, it asks for retransmission.
+- Finally, it reassembles data in the correct order.
+- The reassembled data is given to the browser and you see the webpage.
+
+## What is UDP?
+
+UDP (User Datagram Protocol), Like TCP, it’s a transport layer protocol (layer 4 in OSI), But: it is connectionless and unreliable (no handshakes, no delivery guarantee).
+
+Features:
+- 🚀 Fast — no overhead of acknowledgments/retransmission.
+- 📦 Sends data in datagrams (like packets but without sequencing).
+- 📡 Useful when speed matters more than reliability.
+
+## How does UDP work?
+
+- Application hands data to UDP.
+- UDP puts data inside a datagram with source/destination ports.
+- Datagram is handed to IP (just like TCP).
+- IP delivers it — but if it gets lost, UDP does nothing about it.
 
 ---
 
