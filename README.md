@@ -26,6 +26,15 @@
 - [📡 What is udp?](#what-is-udp)
 - [📡 How does UDP work?](#how-does-udp-work)
 
+### 🖧 **3. Devices in Networking**
+- [📡 Devices in Networking](#devices-in-networking)
+- [📡 How They Work Together](#how-they-work-together)
+
+### 🌐 **4. Routing & Gateways**
+- [What is Routing?](#what-is-routing)
+- [What is a Gateway?](#what-is-a-gateway)
+- [How Routing Works Step by Step](#what-is-routing)
+
 ---
 
 ## What is IP?
@@ -299,6 +308,8 @@ Your laptop = 192.168.1.5
 - Both connect through your router's public IP = 102.45.88.21
 - To the outside world, both appear as one IP (102.45.88.21).
 
+---
+
 ## What is TCP?
 
 TCP (Transmission Control Protocol) It is a transport layer protocol (layer 4 in the OSI model), Main job reliable data delivery between two devices.
@@ -310,6 +321,8 @@ Features:
 - ✅ Uses ACKs (acknowledgements) to confirm delivery
 - 🔄 Retransmits lost packets
 - 🔐 Provides error checking & flow control
+
+---
 
 ## What is TCP/IP?
 
@@ -323,6 +336,8 @@ Two key protocols in the suite:
 
 So: TCP/IP = IP handles the path, TCP makes sure the data arrives correctly.
 
+---
+
 ## How does TCP work?
 
 - Browser sends HTTP request.
@@ -333,6 +348,8 @@ So: TCP/IP = IP handles the path, TCP makes sure the data arrives correctly.
 - Finally, it reassembles data in the correct order.
 - The reassembled data is given to the browser and you see the webpage.
 
+---
+
 ## What is UDP?
 
 UDP (User Datagram Protocol), Like TCP, it’s a transport layer protocol (layer 4 in OSI), But: it is connectionless and unreliable (no handshakes, no delivery guarantee).
@@ -342,12 +359,96 @@ Features:
 - 📦 Sends data in datagrams (like packets but without sequencing).
 - 📡 Useful when speed matters more than reliability.
 
+---
+
 ## How does UDP work?
 
 - Application hands data to UDP.
 - UDP puts data inside a datagram with source/destination ports.
 - Datagram is handed to IP (just like TCP).
 - IP delivers it — but if it gets lost, UDP does nothing about it.
+
+---
+
+## Devices in Networking
+### 1. Hub (Layer 1 – Physical)
+
+hub is a simple hardware device that connects multiple computers or other devices, acting as a central point for data transmission in a local area network (LAN). 
+When a hub receives data, it doesn't analyze or manage it but instead broadcasts that data to all other connected devices.
+
+Example:
+- If PC1 sends data to PC2, the hub sends the same data to every PC connected.
+- This causes a lot of collisions and wasted bandwidth.
+
+### 2. Switch (Layer 2 – Data Link)
+
+switch is a hardware device that connects multiple devices, like computers, printers, and servers, 
+within a local area network (LAN), allowing them to communicate and share information efficiently
+
+Example:
+- PC1 sends data to PC2 → the switch looks up PC2’s MAC → forwards only to PC2’s port.
+- Reduces collisions, more efficient.
+
+
+### 3. Router (Layer 3 – Network)
+
+router is a hardware device that connects two or more separate computer networks, such as your home network and the internet, 
+allowing them to communicate by forwarding data packets to their intended destinations
+
+Example:
+- PC1 = 192.168.1.10
+- PC2 = 10.0.0.5
+- They are in different networks → must go through a router (gateway).
+
+
+## How They Work Together
+
+### 1. Inside a LAN:
+
+- PCs connect to a switch.
+- Switch forwards data directly to the right PC using MAC addresses.
+
+### 2. Between LANs:
+
+- If two PCs are on different networks, the switch can’t help (it only understands MACs).
+- The packet must go to a router (gateway).
+- The router checks its routing table and forwards the packet toward the correct network.
+
+### 3. Hub (old tech):
+
+- Rarely used now because it’s too “dumb” (broadcasts everything).
+- Replaced by switches in modern networks.
+
+---
+
+## What is Routing?
+
+Routing = deciding the path a packet should take to reach its destination (Think of it as a GPS for packets).
+
+Key ideas:
+- Each device knows which networks it can reach directly.
+- If the destination is not in my network, I must send it to a router (gateway) that knows the way.
+
+## What is a Gateway?
+
+A Gateway is the “exit door” of your network, It’s usually your router, If your device doesn’t know where to send a packet, it sends it to the default gateway.
+
+Example:
+
+- Your laptop: 192.168.1.10
+- Router (gateway): 192.168.1.1
+- Destination: 142.250.190.46 (google.com)
+- Since Google is not in 192.168.1.x, your laptop sends the packet to the gateway (192.168.1.1).
+
+## How Routing Works Step by Step
+
+- You send a packet to 142.250.190.46 (Google).
+- Your PC checks: “Is this IP in my local network?”
+- Your IP = 192.168.1.10, mask = /24 → local range = 192.168.1.0–192.168.1.255
+- Google (142.250.190.46) is not in this range.
+- Your PC says: “I don’t know where it is, so I’ll send it to my gateway (192.168.1.1).”
+- The gateway/router then forwards the packet closer to its destination, using its own routing table.
+- Eventually, the packet reaches Google’s network.
 
 ---
 
