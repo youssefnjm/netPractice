@@ -34,6 +34,9 @@
 - [What is Routing?](#what-is-routing)
 - [What is a Gateway?](#what-is-a-gateway)
 - [How Routing Works Step by Step](#what-is-routing)
+  
+### 🌐 **4. OSI vs TCP/IP Model**
+- [OSI Model](#osi-model)
 
 ---
 
@@ -449,6 +452,41 @@ Example:
 - Your PC says: “I don’t know where it is, so I’ll send it to my gateway (192.168.1.1).”
 - The gateway/router then forwards the packet closer to its destination, using its own routing table.
 - Eventually, the packet reaches Google’s network.
+
+---
+
+## **OSI vs TCP/IP Model**
+### OSI Model (Open Systems Interconnection)
+
+The OSI (Open Systems Interconnection) Model is a set of rules that explains how different computer systems communicate over a network.
+The OSI Model consists of 7 layers and each layer has specific functions and responsibilities.
+This layered approach makes it easier for different devices and technologies to work together.
+
+<div align="center">
+ 
+![alt text](https://media.geeksforgeeks.org/wp-content/uploads/20250825185948477480/OSI-Model.webp)
+
+</div>
+
+### Layers of the OSI Model
+
+There are 7 layers in the OSI Model and each layer has its specific role in handling data. All the layers are mentioned below:
+
+#### **Layer 1:** Physical Layer
+
+It is responsible for the actual physical connection between the devices. The physical layer contains information in the form of bits.
+Physical Layer is responsible for transmitting individual bits from one node to the next.
+When receiving data, this layer will get the signal received and convert it into 0s and 1s and send them to the Data Link layer,
+
+#### **Layer 2:** Data Link Layer (DLL)
+
+
+Data Link Layer
+Network Layer
+Transport Layer
+Session Layer
+Presentation Layer
+Application Layer
 
 ---
 
