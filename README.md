@@ -36,7 +36,8 @@
 - [How Routing Works Step by Step](#what-is-routing)
   
 ### 🌐 **4. OSI vs TCP/IP Model**
-- [OSI Model](#osi-model)
+- [OSI Model](#osi-model-(Open-Systems-Interconnection))
+- [Layers of the OSI Model](#layers-of-the-osi-Model))
 
 ---
 
@@ -472,21 +473,42 @@ This layered approach makes it easier for different devices and technologies to 
 
 There are 7 layers in the OSI Model and each layer has its specific role in handling data. All the layers are mentioned below:
 
-#### **Layer 1:** Physical Layer
+#### **Layer 7:** Application Layer
 
-It is responsible for the actual physical connection between the devices. The physical layer contains information in the form of bits.
-Physical Layer is responsible for transmitting individual bits from one node to the next.
-When receiving data, this layer will get the signal received and convert it into 0s and 1s and send them to the Data Link layer,
+Closest to the user this is where apps and network services live. Provides protocols for email, browsing, file sharing, etc.
+(Example: HTTP/HTTPS (websites), SMTP (email), FTP (file transfer)).
+
+#### **Layer 6:** Presentation Layer
+
+converte data into a format both devices understand. Handles encryption, compression, and encoding.
+
+#### **Layer 5:** Session Layer
+
+Session Layer is responsible for the establishment of connections, management of connections, terminations of sessions between two devices.
+It also provides authentication and security.
+
+#### **Layer 4:** Transport Layer
+
+Splits big data into smaller chunks segments (chunks) and ensures they arrive correctly. Uses TCP (reliable, ordered) or UDP (fast, lightweight).
+Example: TCP (web browsing, email), UDP (video streaming, gaming).
+
+#### **Layer 3:** Network Layer
+
+first thing network layer do is logical addressing create a packets by add sender and receiver’s IP addresses of the segment from the transport layer,
+then decides the best path for data to reach a device across multiple networks, This is where routing happens.
 
 #### **Layer 2:** Data Link Layer (DLL)
 
+first thing Data Link Layer do is physicale addressing create a frame by add mac addres (mac address is unique 48-bit hardware numbers of network card) of the sender and receiver to the segment,
 
-Data Link Layer
-Network Layer
-Transport Layer
-Session Layer
-Presentation Layer
-Application Layer
+at this point frame looks like this:
+**`| Destination MAC | Source MAC | Data (IP Packet) | trailer |`**
+
+Now the frame ready for transmission across the network. the upper layer can access to media (transmesstion media) 
+
+#### **Layer 1:** Physical Layer
+
+after all previous layer action in physical layer we translate a frame to bits, the physical layer send signals (can be Electrical signals in cable case, or radio signals in wireless, and Light pulses in fiber optics) in the media
 
 ---
 
